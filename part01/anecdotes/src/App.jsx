@@ -1,6 +1,7 @@
 import { useState } from "react"
 
 const App = () => {
+
   const anecdotes = [
     "If it hurts, do it more often.",
     "Adding manpower to a late software project makes it later!",
@@ -11,10 +12,21 @@ const App = () => {
     "Programming without an extremely heavy use of console.log is same as if a doctor would refuse to use x-rays or blood tests when diagnosing patients.",
     "The only way to go fast, is to go well.",
   ]
+  
+  const getRandomInt = (max) => {
+    return Math.floor(Math.random() * max)
+  }
+  
+  const [selected, setSelected] = useState(getRandomInt(anecdotes.length - 1))
+  const selectRandomAnecdote = () => {
+    setSelected(getRandomInt(anecdotes.length - 1))
+  }
 
-  const [selected, setSelected] = useState(0)
 
-  return <div>{anecdotes[selected]}</div>
+  return <div>
+      <p>{anecdotes[selected]}</p>
+      <button onClick={() => selectRandomAnecdote()}>next anecdote</button>
+    </div>
 }
 
 export default App
